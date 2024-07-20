@@ -15,3 +15,10 @@ install: bluesnooze
 	sed "s|BLUESNOOZE_PATH|$(HOME)/.local/bin/bluesnooze|g" bluesnooze.plist >"$(HOME)/Library/LaunchAgents/bluesnooze.plist"
 	launchctl unload "$(HOME)/Library/LaunchAgents/bluesnooze.plist" 2>/dev/null || true
 	launchctl load "$(HOME)/Library/LaunchAgents/bluesnooze.plist"
+
+.PHONY: uninstall
+
+uninstall:
+	launchctl unload "$(HOME)/Library/LaunchAgents/bluesnooze.plist" 2>/dev/null || true
+	rm -f "$(HOME)/Library/LaunchAgents/bluesnooze.plist"
+	rm -f "$(HOME)/.local/bin/bluesnooze"
